@@ -1,16 +1,5 @@
 package main
 
-import (
-	"time"
-)
-
-const (
-	gas      = 1
-	diesel   = 2
-	LPG      = 3
-	electric = 4
-)
-
 type car struct {
 	fuel int
 }

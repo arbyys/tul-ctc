@@ -1,8 +1,15 @@
 package main
 
 import "fmt"
-import "gopkg.in/yaml.v3"
 
 func main() {
 	fmt.Println("Hello, World!")
+
+	conf, err := loadConfig(filePath)
+	if err != nil {
+		printError(err)
+		return
+	}
+
+	fmt.Println(conf)
 }
