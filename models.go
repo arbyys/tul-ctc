@@ -16,10 +16,10 @@ type dispatcher struct {
 	timeMax  int
 }
 
-// config file structure
+// config file structure:
 type configFile struct {
 	Cars      carConfig      `yaml:"cars"`
-	Stations  stationType    `yaml:"stations"`
+	Stations  stationConfig  `yaml:"stations"`
 	Registers registerConfig `yaml:"registers"`
 }
 

@@ -3,13 +3,15 @@ package main
 import "fmt"
 
 func main() {
-	fmt.Println("Hello, World!")
+	fmt.Printf("App %s starting", appName)
 
-	conf, err := loadConfig(filePath)
+	conf, err := loadConfig(inputFile)
 	if err != nil {
 		printError(err)
 		return
 	}
 
-	fmt.Println(conf)
+	fmt.Println(conf.Cars.Count)
+
+	// app logic
 }

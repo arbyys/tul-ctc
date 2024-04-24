@@ -7,7 +7,7 @@ import (
 	"gopkg.in/yaml.v3"
 )
 
-func printError(message string) {
+func printError(message error) {
 	fmt.Printf("\n[!] Following error thrown by the app:\n%s\n", message)
 }
 

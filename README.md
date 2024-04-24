@@ -1,4 +1,4 @@
-# Aplikace Benzínová stanice
+# Aplikace EuroGoil
 
 - Golang
 - Docker

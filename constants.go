@@ -1,7 +1,10 @@
 package main
 
 const (
-	filePath = "config/config.yaml"
+	appName    = "EuroGoil"
+	inputFile  = "config/config.yaml"
+	outputFile = "output/output.yaml"
+
 	gas      = 1
 	diesel   = 2
 	LPG      = 3
