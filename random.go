@@ -6,7 +6,7 @@ import (
 )
 
 func getRandomFuel() int {
-	return rand.Intn(4) + 1
+	return rand.Intn(4)
 }
 
 func sleepRandomTime(timeMin, timeMax int) {

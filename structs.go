@@ -1,5 +1,10 @@
 package main
 
+type shortestQueueWorker struct {
+	count int
+	index int
+}
+
 type car struct {
 	fuel int
 }
@@ -8,7 +13,7 @@ type sharedQ struct {
 	queue chan car
 }
 
-// dispatcher is generic type for both stand and register
+// dispatcher is generic type for both stand and cash register
 type dispatcher struct {
 	queue    chan car
 	occupied bool
@@ -42,6 +47,13 @@ type stationType struct {
 	ServeTimeMin   int `yaml:"serve_time_min"`
 	ServeTimeMax   int `yaml:"serve_time_max"`
 	QueueLengthMax int `yaml:"queue_length_max"`
+}
+
+type stationTypeRaw struct {
+	Count          int
+	ServeTimeMin   int
+	ServeTimeMax   int
+	QueueLengthMax int
 }
 
 type registerConfig struct {

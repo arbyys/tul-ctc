@@ -26,3 +26,34 @@ func loadConfig(filePath string) (configFile, error) {
 
 	return config, nil
 }
+
+func getShortestQueue(dispatchers []*dispatcher) int {
+	sqw := shortestQueueWorker{
+		count: queueMoreThanMax,
+		index: -1,
+	}
+
+	for i := range dispatchers {
+		currentQueueLength := len(dispatchers[i].queue)
+		if dispatchers[i].occupied {
+			currentQueueLength += 1
+		}
+
+		if currentQueueLength < sqw.count {
+			sqw.count = currentQueueLength
+			sqw.index = i
+		}
+	}
+
+	return sqw.index
+}
+func generateNewCars(count int, timeMin int, timeMax int, sq *sharedQ) {
+	for i := 0; i < count; i++ {
+		sleepRandomTime(timeMin, timeMax)
+		c := car{
+			fuel: getRandomFuel(),
+		}
+		//c.waitForSharedQueueStarted = time.Now()
+		sq.queue <- c
+	}
+}
