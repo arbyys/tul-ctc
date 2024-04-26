@@ -11,7 +11,9 @@ type shortestQueueWorker struct {
 }
 
 type car struct {
-	fuel int
+	fuel          int
+	leftSharedQAt time.Time
+	leftStandAt   time.Time
 }
 
 type sharedQ struct {
@@ -34,9 +36,14 @@ type stationTypeRaw struct {
 }
 
 type statsContainer struct {
-	mu       sync.Mutex
-	stats    outputFileStruct
-	statsMax statsMaxValues
+	mu    sync.Mutex
+	stats outputFileStruct
+	//statsTotal statsAllTypes
+}
+
+type statTimeRecord struct {
+	detailedType statsAllTypes
+	value        time.Duration
 }
 
 // config file structure:
@@ -74,7 +81,7 @@ type registerConfig struct {
 	QueueLengthMax int `yaml:"queue_length_max"`
 }
 
-type statsMaxValues struct {
+type statsAllTypes struct {
 	registers time.Duration
 	gas       time.Duration
 	diesel    time.Duration

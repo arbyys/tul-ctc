@@ -3,29 +3,26 @@ package main
 import (
 	"fmt"
 	"sync"
-	"time"
 )
 
 var wg sync.WaitGroup
 var sc statsContainer = statsContainer{
 	stats: outputFileStruct{},
-	statsMax: statsMaxValues{
+	/*statsTotal: statsAllTypes{
 		registers: 0,
 		gas:       0,
 		diesel:    0,
 		LPG:       0,
 		electric:  0,
-	},
+	},*/
 }
 
 func main() {
-	totalSimulationTime := time.Now()
-	fmt.Printf("\nWelcome to %s!", appName)
+	fmt.Printf("\nWelcome to %s! Simulation is now running.", appName)
 
-	conf, err := loadConfig(inputFile)
+	conf, err := loadConfig(inputFilePath)
 	if err != nil {
-		printError(err)
-		return
+		printErrorAndDie(err)
 	}
 
 	// app logic
@@ -71,5 +68,17 @@ func main() {
 	go generateNewCars(conf.Cars.Count, conf.Cars.ArrivalTimeMin, conf.Cars.ArrivalTimeMax, &sq)
 	wg.Wait()
 
-	fmt.Printf("\nAll cars gone. Total exec time: %d", time.Since(totalSimulationTime))
+	recalculateAvgStats()
+
+	err = exportStats(outputFilePath)
+	if err != nil {
+		printErrorAndDie(err)
+	}
+
+	fmt.Printf("\n\nAll cars gone. Following results have been exported to file %s.\n", outputFilePath)
+
+	err = printStats()
+	if err != nil {
+		printErrorAndDie(err)
+	}
 }

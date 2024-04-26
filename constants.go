@@ -1,9 +1,9 @@
 package main
 
 const (
-	appName    = "EuroGoil"
-	inputFile  = "config/config.yaml"
-	outputFile = "output/output.yaml"
+	appName        = "EuroGoil"
+	inputFilePath  = "config/config.yaml"
+	outputFilePath = "output/output.yaml"
 
 	queueMoreThanMax = 9999 // must be higher than 'max items' in any queue
 
@@ -11,4 +11,5 @@ const (
 	diesel   = 1
 	LPG      = 2
 	electric = 3
+	register = 4
 )
