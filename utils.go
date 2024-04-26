@@ -87,7 +87,6 @@ func generateNewCars(count int, timeMin int, timeMax int, sq *sharedQ) {
 		c := car{
 			fuel: getRandomFuel(),
 		}
-		//c.waitForSharedQueueStarted = time.Now()
 		sq.queue <- c
 	}
 }

@@ -21,15 +21,14 @@ func (d *dispatcher) fuelStandProcess(registers []*dispatcher) {
 	for {
 		c := <-d.queue
 		d.occupied = true
-		defer func() {
-			d.occupied = false
-		}()
 
 		sleepRandomTime(d.timeMin, d.timeMax)
 		shortestQueueIndex := getShortestQueue(registers)
 		c.leftStandAt = time.Now()
 
 		registers[shortestQueueIndex].queue <- c
+
+		d.occupied = false
 	}
 }
 

@@ -38,12 +38,6 @@ type stationTypeRaw struct {
 type statsContainer struct {
 	mu    sync.Mutex
 	stats outputFileStruct
-	//statsTotal statsAllTypes
-}
-
-type statTimeRecord struct {
-	detailedType statsAllTypes
-	value        time.Duration
 }
 
 // config file structure:
@@ -79,14 +73,6 @@ type registerConfig struct {
 	HandleTimeMin  int `yaml:"handle_time_min"`
 	HandleTimeMax  int `yaml:"handle_time_max"`
 	QueueLengthMax int `yaml:"queue_length_max"`
-}
-
-type statsAllTypes struct {
-	registers time.Duration
-	gas       time.Duration
-	diesel    time.Duration
-	LPG       time.Duration
-	electric  time.Duration
 }
 
 // output file structure:

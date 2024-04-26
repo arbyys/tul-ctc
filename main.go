@@ -8,13 +8,6 @@ import (
 var wg sync.WaitGroup
 var sc statsContainer = statsContainer{
 	stats: outputFileStruct{},
-	/*statsTotal: statsAllTypes{
-		registers: 0,
-		gas:       0,
-		diesel:    0,
-		LPG:       0,
-		electric:  0,
-	},*/
 }
 
 func main() {
