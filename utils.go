@@ -11,17 +11,17 @@ func printError(message error) {
 	fmt.Printf("\n[!] Following error thrown by the app:\n%s\n", message)
 }
 
-func loadConfig(filePath string) (configFile, error) {
-	config := configFile{}
+func loadConfig(filePath string) (configFileStruct, error) {
+	config := configFileStruct{}
 	buffer, err := os.ReadFile(filePath)
 
 	if err != nil {
-		return configFile{}, err
+		return configFileStruct{}, err
 	}
 
 	err = yaml.Unmarshal(buffer, &config)
 	if err != nil {
-		return configFile{}, err
+		return configFileStruct{}, err
 	}
 
 	return config, nil
@@ -47,6 +47,7 @@ func getShortestQueue(dispatchers []*dispatcher) int {
 
 	return sqw.index
 }
+
 func generateNewCars(count int, timeMin int, timeMax int, sq *sharedQ) {
 	for i := 0; i < count; i++ {
 		sleepRandomTime(timeMin, timeMax)
@@ -56,4 +57,8 @@ func generateNewCars(count int, timeMin int, timeMax int, sq *sharedQ) {
 		//c.waitForSharedQueueStarted = time.Now()
 		sq.queue <- c
 	}
+}
+
+func updateStats(c car) {
+
 }
